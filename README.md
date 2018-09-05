@@ -15,19 +15,48 @@ Don't store passwords in plain text source control.
 - Default Value 
 
 # 2. Environment Variables
-- Locally testing environment variables
-- Order of precedence 
+
+## Locally 
+
+For testing purposes, environment variables can be injected at spring-boot:run time.
+
+```sh
+mvn spring-boot:run -Dapplication.greeting.message="Hello from commandline"
+```
+
+## On PCF
+
+Environment variables can be updated in PCF in a variety of ways including via GUI, Manifest, and commandline.
+
+To update via the commandline run:
+
+```sh
+cf set-env config-demo application.greeting.message "Greetings from PCF env variable"
+```
+
+## Note the Order of Precedence 
 https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html 
 
 # 3. Spring Profiles 
-- spring.profiles.active
-- application-cloud.properties
+
+In addition to application.properties, Spring will load additional application-XX.properties files based on the spring.profiles.active environment variable.
+
+In PCF, this is set to **cloud** by default, meaning application-cloud.properties will be loaded as well. 
+
+To test this locally:
+```sh
+mvn spring-boot:run -Dspring.profiles.active=qa
+```
+
+> Tip - that you can have multiple Active properties enabled
 
 # 4. Marketplace Services 
 
 # 5. CUPS - Custom User Provided Services  
 
 # 6. Refresh Actuator Endpoint <- not that it hits only one instance  .. requires Refresh Scope 
+- Requires RefreshScope Annotation
+- Requires an update in code
 
 # 7. Config Server
 - Requires Spring Cloud Client 
