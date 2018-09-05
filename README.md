@@ -20,13 +20,12 @@ https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-ext
     2. application-cloud.properties
 #4. Marketplace Services 
 #5. CUPS - Custom User Provided Services  
-#6. Environment variable .. requires a restart 
-#7. Refresh Actuator Endpoint <- not that it hits only one instance  .. requires Refresh Scope 
-#8. Config Server
+#6. Refresh Actuator Endpoint <- not that it hits only one instance  .. requires Refresh Scope 
+#7. Config Server
     1. Requires Spring Cloud Client 
     2. Default Address is http://localhost:8888
     3. Marketplace binding will point to correct one
-#9. Vault via PCF
+#8. Vault via PCF
     1. Spring Cloud Vault .. requires service binding 
 
 ## Demo Steps
