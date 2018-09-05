@@ -9,16 +9,16 @@ import java.util.Map;
 @Controller
 public class IndexController {
 
-    @Value("${vcap.application.name:local_app}")
-    private String applicationName;
+    @Value("${application.greeting.message:hello from default}")
+    private String greetingMessage;
 
-    @Value("${vcap.application.space_name:local_space}")
-    private String spaceName;
+    @Value("${application.number.value:0}")
+    private String numberValue;
 
     @RequestMapping("/")
     public String welcome(Map<String, Object> model) {
-        model.put("applicationName", applicationName);
-        model.put("spaceName", spaceName);
+        model.put("greetingMessage", greetingMessage);
+        model.put("numberValue", numberValue);
         return "index";
     }
 }

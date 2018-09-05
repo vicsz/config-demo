@@ -21,19 +21,16 @@
             <div class="panel panel-default">
                 <div class="panel-heading"><h2>Information</h2></div>
                 <div class="panel-body">
-                    <p th:text="'PCF Info:   ' + ${applicationName} + '@' + ${spaceName}"></p>
-                    <button type="button" class="btn btn-info" onclick="window.location.href='/actuator/info'" >Info Actuator</button>
-                    <button type="button" class="btn btn-info" onclick="window.location.href='/actuator/health'" >Health Actuator</button>
+                    <p th:text="'Greeting Message:   ' + ${greetingMessage}"></p>
+                    <p th:text="'Number Value:   ' + ${numberValue}"></p>
                 </div>
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading"><h2>Logging</h2></div>
+                <div class="panel-heading"><h2>Configuration</h2></div>
                 <div class="panel-body">
-                    <p>Assuming correct Slack setup, Errors / Exceptions will cause a Slack Alerts.</p>
-                    <button type="button" class="btn btn-warning" onclick='$.get("logging/exception")' >Cause JVM (Server-Side) Runtime Exception</button>
-                    <button type="button" class="btn btn-warning" onclick='throw "JS (Client-Side) Error"' >Cause JS (Client-Side) Error </button>
-                    <button type="button" class="btn btn-info" onclick="window.location.href='/actuator/logfile'" >Logfile Actuator</button>
+                    <p>Call Refresh endpoint.</p>
+                    <button type="button" class="btn btn-warning" onclick='$.get("actuator/refresh")' >Refresh properties</button>
                 </div>
             </div>
 
