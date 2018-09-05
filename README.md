@@ -111,9 +111,31 @@ This setting can then be loaded via VCAP environment variables in your source co
 ```
 
 # 6. Config Server
-- Requires Spring Cloud Client 
-- Default Address is http://localhost:8888
-- Marketplace binding will point to correct one
+
+You can also externalize configuration using an external Config Server.
+
+One should be available in the CF Marketplace. 
+
+```sh
+cf marketplace
+```
+
+To create it, run: 
+```sh
+cf create-service -c '{ "git": { "uri": "https://github.com/vicsz/configuration-server-config-repo", "label": "master" } }' p-config-server trial my-config
+```
+
+> Note - the custom GIT Url which can be configured 
+
+Bind the service to your application and restart:
+
+```sh
+cf bind-service config-demo my-config
+```
+
+You will also need to ensure that the *Spring Cloud Client* dependency is added to your application.
+
+
 
 # 7. Refresh Actuator Endpoint <- not that it hits only one instance  .. requires Refresh Scope 
 - Requires RefreshScope Annotation
@@ -134,9 +156,9 @@ cf bind-service metrics-demo myforwarder
 # 8. Vault via PCF
 - Spring Cloud Vault .. requires service binding 
 
-## Demo Steps
+## Running the Application
 
-### 1. Deploy to PCF
+### Deploy to PCF
 
 Build the application:
 
@@ -151,35 +173,3 @@ cf push
 ```
 
 > Use --no-route in case of conflicting routes.
-
-### 2. Create and Bind the Config Service
-
-This is required for Config Server Usage.
-
-#### Ensure *Configuration Server* service is available in the CF MarketPlace
-
-```sh
-cf marketplace
-```
-
-Contact your PCF Cloud Ops team if it is not.
-
-#### Create the Service
-
-You can use a *plan* and *name* of your choice.
-
-```sh
-cf create-service p-config-server traile myconfig
-```
-
-#### Bind the Service to your Application
-
-```sh
-cf bind-service metrics-demo myforwarder
-```
-
-#### Restage your Application
-
-```sh
-cf restage metrics-demo
-```
