@@ -10,6 +10,16 @@ A variety of options are available for configuration management with varying lev
 
 Pick the right options for your business needs, default to simplicity, and don't store sensitive data (passwords) in SCM. 
 
+## On Simplicity -- From **Extreme Programming Explained: Embrace Change**
+
+*Simplicity is the most intensely intellectual of the XP values. To make a system simple enough to gracefully solve only today’s problem is hard work.* 
+
+
+*If someone asks me whether I want the Ferrari or the minivan , I choose the Ferrari . It will inevitably be more fun . However , as soon as someone says , “ Do you want the Ferrari for $ 150,000 or the minivan for $ 25,000 ? ”*
+*I can begin to make an informed decision . Adding new constraints like “ I need to haul five children ” or “ It has to go 150 miles per hour ” clear the picture further . There are cases where either decision makes sense . You can’t make a good decision based on image alone . To choose a car wisely you need to know your constraints , both cost and intended use . All other things being equal , appeal comes into play .*
+
+*It’s easy to get carried away programming and put in code “ just in case . ” By stating explicitly and objectively what the program is supposed to do , you give yourself a focus for your coding .*
+
 ## Configuration Options  
 
 # 1. Properties Files
