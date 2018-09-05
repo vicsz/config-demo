@@ -10,31 +10,31 @@ Don't store passwords in plain text source control.
 
 ## Configuration Options  
 
-#1. Properties Files
+# 1. Properties Files
 - Values Annotation
 - Default Value 
 
-#2. Environment Variables
+# 2. Environment Variables
 - Locally testing environment variables
 - Order of precedence 
 https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html 
 
-#3. Spring Profiles 
+# 3. Spring Profiles 
 - spring.profiles.active
 - application-cloud.properties
 
-#4. Marketplace Services 
+# 4. Marketplace Services 
 
-#5. CUPS - Custom User Provided Services  
+# 5. CUPS - Custom User Provided Services  
 
-#6. Refresh Actuator Endpoint <- not that it hits only one instance  .. requires Refresh Scope 
+# 6. Refresh Actuator Endpoint <- not that it hits only one instance  .. requires Refresh Scope 
 
-#7. Config Server
+# 7. Config Server
 - Requires Spring Cloud Client 
 - Default Address is http://localhost:8888
 - Marketplace binding will point to correct one
 
-#8. Vault via PCF
+# 8. Vault via PCF
 - Spring Cloud Vault .. requires service binding 
 
 ## Demo Steps
