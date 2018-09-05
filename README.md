@@ -159,6 +159,19 @@ More advanced PCF Configuration Example available at: (including encryption and 
 
 https://github.com/spring-cloud-services-samples/cook
 
+## Spring Boot Config Client 
+
+You will need the spring-cloud-services-starter-config-client dependency instead of the spring-cloud-starter-config one.
+
+Your pom.xml will need : 
+```xml
+<dependency>
+    <groupId>io.pivotal.spring.cloud</groupId>
+    <artifactId>spring-cloud-services-starter-config-client</artifactId>
+</dependency>
+
+```
+
 # 8. Refreshing Config Values
 
 A restart will always cause to reload of values from Vault.
@@ -175,6 +188,11 @@ To force a reload of values, the refresh endpoint needs to be hit:
 curl -X POST http://localhost:8080/actuator/refresh
 ```
 
+Note that this will only call **ONE** instance, and not update the other ones (if you have more then one instance load balanced).
+
+One workaround for this is Spring Cloud Bus:
+
+https://www.baeldung.com/spring-cloud-bus
 
 # 7. Vault via PCF
 
