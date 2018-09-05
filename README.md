@@ -2,17 +2,27 @@
 
 Application demonstrating Internal and External Configuration management with Spring Boot and PCF for both Sensitive and non-Sensitive Data.
 
-# Best Practices 
+A variety of options are available for configuration management with varying levels of support, features, and costs including:
+- Ability to update variables *without* artifact changes
+- Ability to update variables *without* application restarts
+- Ability to track / audit changes to config variables
+- Ability to share config with different application
 
-YAGNI - default to the simplest solution. 
-
-Don't store passwords in plain text source control. 
+Pick the right options for your business needs, default to simplicity, and don't store sensitive data (passwords) in SCM. 
 
 ## Configuration Options  
 
 # 1. Properties Files
-- Values Annotation
-- Default Value 
+
+Variables can be injected from application.properties files using the *Value* Annotation.
+
+Note the support for default values, for example:
+
+```java
+@Value("${application.greeting.message:hello from default}")
+private String greetingMessage;
+
+```
 
 # 2. Environment Variables
 
@@ -28,11 +38,15 @@ mvn spring-boot:run -Dapplication.greeting.message="Hello from commandline"
 
 Environment variables can be updated in PCF in a variety of ways including via GUI, Manifest, and commandline.
 
+To update via the GUI (AppsMan), configuration is under Application Settings -> User Provided Environment Variables. 
+
 To update via the commandline run:
 
 ```sh
 cf set-env config-demo application.greeting.message "Greetings from PCF env variable"
 ```
+
+This option can be used for sensitive data such as passwords, preventing them from being available in Source Code, and the Deployable Artifact.
 
 ## Note the Order of Precedence 
 https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html 
@@ -52,16 +66,60 @@ mvn spring-boot:run -Dspring.profiles.active=qa
 
 # 4. Marketplace Services 
 
-# 5. CUPS - Custom User Provided Services  
+For storing passwords to Services available in the CF Marketplace, consider just using the Service Binding for password management. 
 
-# 6. Refresh Actuator Endpoint <- not that it hits only one instance  .. requires Refresh Scope 
-- Requires RefreshScope Annotation
-- Requires an update in code
+To view available services:
 
-# 7. Config Server
+```sh
+cf marketplace
+```
+
+# 5. Custom User Provided Services (CUPS)
+
+For Services not available in the CF Marketplace, and where you don't want to use environment variables, and potentially you want to share services between application consider Custom User Provided Services (CUPS).
+
+https://docs.cloudfoundry.org/devguide/services/user-provided.html
+
+This will emulate a Service for you in CF, though you will still be responsible for updating your code to load and use the credentials.
+
+To create the Service:
+
+```sh
+cf cups my-custom-service -p '{"username":"admin","password":"pa55woRD"}'
+```
+
+You will also need to bind the Service to your application:
+
+```sh
+cf bind-service config-demo my-custom-service
+```
+
+This setting can then be loaded via VCAP environment variables in your source code, for example:
+
+```java
+
+```
+
+# 6. Config Server
 - Requires Spring Cloud Client 
 - Default Address is http://localhost:8888
 - Marketplace binding will point to correct one
+
+# 7. Refresh Actuator Endpoint <- not that it hits only one instance  .. requires Refresh Scope 
+- Requires RefreshScope Annotation
+- Requires an update in code
+
+
+
+```sh
+cf create-service p-config-server traile myconfig
+```
+
+#### Bind the Service to your Application
+
+```sh
+cf bind-service metrics-demo myforwarder
+```
 
 # 8. Vault via PCF
 - Spring Cloud Vault .. requires service binding 
@@ -101,7 +159,7 @@ Contact your PCF Cloud Ops team if it is not.
 You can use a *plan* and *name* of your choice.
 
 ```sh
-cf create-service metrics-forwarder unlimited myforwarder
+cf create-service p-config-server traile myconfig
 ```
 
 #### Bind the Service to your Application

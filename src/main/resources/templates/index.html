@@ -23,6 +23,7 @@
                 <div class="panel-body">
                     <p th:text="'Greeting Message:   ' + ${greetingMessage}"></p>
                     <p th:text="'Number Value:   ' + ${numberValue}"></p>
+                    <p th:text="'Custom Service Username:   ' + ${customServiceUsername}"></p>
                 </div>
             </div>
 
@@ -30,7 +31,7 @@
                 <div class="panel-heading"><h2>Configuration</h2></div>
                 <div class="panel-body">
                     <p>Call Refresh endpoint.</p>
-                    <button type="button" class="btn btn-warning" onclick='$.get("actuator/refresh")' >Refresh properties</button>
+                    <button type="button" class="btn btn-warning" onclick='$.post("actuator/refresh")' >Refresh properties</button>
                 </div>
             </div>
 
