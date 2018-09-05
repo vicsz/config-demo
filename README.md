@@ -135,26 +135,52 @@ cf bind-service config-demo my-config
 
 You will also need to ensure that the *Spring Cloud Client* dependency is added to your application.
 
+> Tip - Configuration variables additionally be encrypted
 
+https://docs.run.pivotal.io/spring-cloud-services/config-server/configuring-with-git.html
 
-# 7. Refresh Actuator Endpoint <- not that it hits only one instance  .. requires Refresh Scope 
-- Requires RefreshScope Annotation
-- Requires an update in code
+> Tip - An alternate underlying data store for the Config Server is Hashicorp Vault
 
+https://docs.run.pivotal.io/spring-cloud-services/config-server/configuring-with-vault.html
 
+Configuration requests use one of the following path formats:
 
-```sh
-cf create-service p-config-server traile myconfig
+```text
+/{application}/{profile}[/{label}]
+/{application}-{profile}.yml
+/{label}/{application}-{profile}.yml
+/{application}-{profile}.properties
+/{label}/{application}-{profile}.properties
 ```
 
-#### Bind the Service to your Application
+> Note - it's NOT in the format of "application.properties" but appname.properties (i.e. config-demo.properties)
+
+More advanced PCF Configuration Example available at: (including encryption and file usage)
+
+https://github.com/spring-cloud-services-samples/cook
+
+# 8. Refreshing Config Values
+
+A restart will always cause to reload of values from Vault.
+
+For re-loading values without a restart, you can use the refresh actuator endpoint.
+
+This will require the Actuator Spring Boot Dependency, and the refresh endpoint exposed (see application.properties file).
+
+Also note the required addition of the RefreshScope annotation in the WebController.
+
+To force a reload of values, the refresh endpoint needs to be hit: 
 
 ```sh
-cf bind-service metrics-demo myforwarder
+curl -X POST http://localhost:8080/actuator/refresh
 ```
 
-# 8. Vault via PCF
-- Spring Cloud Vault .. requires service binding 
+
+# 7. Vault via PCF
+
+In addition to using a Config Server with a Vault Backend, you can also use a Vault Service Broker and the Spring Cloud Vault client library. 
+
+Demo available at : https://github.com/vicsz/spring-vault-demo
 
 ## Running the Application
 
