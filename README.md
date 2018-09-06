@@ -10,7 +10,9 @@ A variety of options are available for configuration management with varying lev
 
 Pick the right options for your business needs, default to simplicity, and don't store sensitive data (passwords) in SCM. 
 
-## On Simplicity -- From **Extreme Programming Explained: Embrace Change**
+## On Simplicity and Picking the Right Solution
+
+**Quotes from the Book: Extreme Programming Explained: Embrace Change by Kent Beck**
 
 *Simplicity is the most intensely intellectual of the XP values. To make a system simple enough to gracefully solve only today’s problem is hard work.* 
 
