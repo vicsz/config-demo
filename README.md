@@ -12,9 +12,9 @@ Pick the right options for your business needs, default to simplicity, and don't
 
 ## On Simplicity and Picking the Right Solution
 
-**Quotes from the Book: Extreme Programming Explained: Embrace Change by Kent Beck**
-
 <img src="img/book-cover.jpg" width="200">
+
+**Quotes from the book:**
 
 *Simplicity is the most intensely intellectual of the XP values. To make a system simple enough to gracefully solve only today’s problem is hard work.* 
 
