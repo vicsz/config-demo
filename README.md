@@ -194,6 +194,12 @@ In Spring Intitalizer for a PCF Config Server Client, make sure you select the *
 
 A restart will always cause to reload of values from Vault.
 
+Example:
+
+```sh
+cf restage config-demo
+```
+
 For re-loading values without a restart, you can use the refresh actuator endpoint.
 
 This will require the Actuator Spring Boot Dependency, and the refresh endpoint exposed (see application.properties file).
