@@ -120,7 +120,7 @@ cf bind-service config-demo my-custom-service
 This setting can then be loaded via VCAP environment variables in your source code, for example:
 
 ```java
-@Value("${vcap.services.my-custom-service.credentials.username:#{null}}}")
+@Value("${vcap.services.my-custom-service.credentials.username:#{null}}")
 private String customServiceUsername;
 ```
 
