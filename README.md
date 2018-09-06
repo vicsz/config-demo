@@ -109,8 +109,11 @@ cf bind-service config-demo my-custom-service
 This setting can then be loaded via VCAP environment variables in your source code, for example:
 
 ```java
-
+@Value("${vcap.services.my-custom-service.credentials.username:#{null}}}")
+private String customServiceUsername;
 ```
+
+> TIP - not the usage of #{null} to set the default to an actual Null value instead of a String containing Null
 
 # 6. Config Server
 
