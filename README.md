@@ -188,6 +188,8 @@ Your pom.xml will need :
 
 ```
 
+In Spring Intitalizer for a PCF Config Server Client, make sure you select the **Config Client (PCF)**  (under Pivotal Cloud Foundry in Full Version )instead of Config Client. 
+
 # 8. Refreshing Config Values
 
 A restart will always cause to reload of values from Vault.
