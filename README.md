@@ -14,7 +14,7 @@ Pick the right options for your business needs, default to simplicity, and don't
 
 **Quotes from the Book: Extreme Programming Explained: Embrace Change by Kent Beck**
 
-<img src="img/book-cover.png">
+<img src="img/book-cover.jpg">
 
 *Simplicity is the most intensely intellectual of the XP values. To make a system simple enough to gracefully solve only today’s problem is hard work.* 
 
