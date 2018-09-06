@@ -17,7 +17,7 @@ public class IndexController {
     @Value("${application.number.value:0}")
     private String numberValue;
 
-    @Value("${vcap.services.my-custom-service.credentials.username:#{null}}}")
+    @Value("${vcap.services.my-custom-service.credentials.username:#{null}}")
     private String customServiceUsername;
 
     @RequestMapping("/")

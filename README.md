@@ -3,7 +3,7 @@
 Application demonstrating Internal and External Configuration management with Spring Boot and PCF for both Sensitive and non-Sensitive Data.
 
 A variety of options are available for configuration management with varying levels of support, features, and costs including:
-- Ability to update variables *without* artifact changes
+- Ability to update variables *without* deployable artifact changes
 - Ability to update variables *without* application restarts
 - Ability to track / audit changes to config variables
 - Ability to share config with different application
@@ -72,6 +72,17 @@ In PCF, this is set to **cloud** by default, meaning application-cloud.propertie
 To test this locally:
 ```sh
 mvn spring-boot:run -Dspring.profiles.active=qa
+```
+
+Example for setting it in a PCF manifest file:
+
+```yaml
+applications:
+- name: config-demo
+  path: target/config-demo-0.0.1-SNAPSHOT.jar
+  env:
+    SPRING_PROFILES_ACTIVE: qa
+
 ```
 
 > Tip - that you can have multiple Active properties enabled
@@ -204,6 +215,13 @@ https://www.baeldung.com/spring-cloud-bus
 In addition to using a Config Server with a Vault Backend, you can also use a Vault Service Broker and the Spring Cloud Vault client library. 
 
 Demo available at : https://github.com/vicsz/spring-vault-demo
+
+Additional information available:
+
+https://www.hashicorp.com/blog/cloud-foundry-vault-service-broker
+https://github.com/hashicorp/vault-service-broker
+
+> Note - that secrets can also be shared across Spaces and Organizations
 
 ## Running the Application
 

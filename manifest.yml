@@ -1,3 +1,5 @@
 applications:
 - name: config-demo
   path: target/config-demo-0.0.1-SNAPSHOT.jar
+  env:
+    SPRING_PROFILES_ACTIVE: qa
